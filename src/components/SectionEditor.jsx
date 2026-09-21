@@ -64,7 +64,7 @@ export function SectionEditor({
         gap: '10px'
       }}>
         {/* Title & Subtitle inputs */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1, minWidth: '260px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: 1, minWidth: '200px', flexWrap: 'wrap' }}>
           <div style={{
             fontSize: '11px',
             fontWeight: 700,
@@ -73,7 +73,8 @@ export function SectionEditor({
             backgroundColor: '#1b1b1b',
             border: '1px solid #3a3a3a',
             borderRadius: '3px',
-            padding: '4px 8px'
+            padding: '4px 8px',
+            flexShrink: 0
           }}>
             #{String(index + 1).padStart(2, '0')}
           </div>
@@ -88,7 +89,9 @@ export function SectionEditor({
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               fontSize: '13px',
-              height: '32px'
+              height: '34px',
+              flex: 1,
+              minWidth: '130px'
             }}
           />
           <input
@@ -97,7 +100,7 @@ export function SectionEditor({
             value={section.subtitle || ''}
             onChange={(e) => handleSubtitleChange(e.target.value)}
             placeholder="Sub/Date (e.g. 17.10.2026)"
-            style={{ width: '150px', height: '32px', fontSize: '12px' }}
+            style={{ width: '130px', height: '34px', fontSize: '12px' }}
           />
         </div>
 
@@ -109,7 +112,7 @@ export function SectionEditor({
             disabled={index === 0}
             className="btn btn-secondary btn-sm"
             title="Move Section Up"
-            style={{ opacity: index === 0 ? 0.3 : 1, padding: '4px 8px' }}
+            style={{ opacity: index === 0 ? 0.3 : 1, padding: '5px 8px', minHeight: '32px' }}
           >
             <ArrowUp size={14} />
           </button>
@@ -119,7 +122,7 @@ export function SectionEditor({
             disabled={index === totalSections - 1}
             className="btn btn-secondary btn-sm"
             title="Move Section Down"
-            style={{ opacity: index === totalSections - 1 ? 0.3 : 1, padding: '4px 8px' }}
+            style={{ opacity: index === totalSections - 1 ? 0.3 : 1, padding: '5px 8px', minHeight: '32px' }}
           >
             <ArrowDown size={14} />
           </button>
@@ -128,7 +131,7 @@ export function SectionEditor({
             onClick={onDeleteSection}
             className="btn btn-danger btn-sm"
             title="Delete Section"
-            style={{ padding: '4px 8px' }}
+            style={{ padding: '5px 8px', minHeight: '32px' }}
           >
             <Trash2 size={14} />
           </button>
@@ -136,19 +139,9 @@ export function SectionEditor({
       </div>
 
       {/* Items Container */}
-      <div style={{ padding: '14px' }}>
+      <div style={{ padding: '12px' }}>
         {/* Table header */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(180px, 1fr) 90px 110px 36px',
-          gap: '8px',
-          padding: '0 8px 6px 8px',
-          fontSize: '11px',
-          fontWeight: 600,
-          color: '#888888',
-          textTransform: 'uppercase',
-          letterSpacing: '0.06em'
-        }} className="item-row-grid">
+        <div className="item-row-grid-header">
           <div>Food / Service Item</div>
           <div>Quantity</div>
           <div>Unit</div>

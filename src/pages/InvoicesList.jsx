@@ -78,7 +78,7 @@ export function InvoicesList({
         flexWrap: 'wrap',
         gap: '12px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1, minWidth: '240px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1, minWidth: '160px' }}>
           <Search size={18} color="#777" />
           <input
             type="text"
@@ -91,7 +91,7 @@ export function InvoicesList({
         </div>
 
         {/* Status Filter buttons */}
-        <div style={{ display: 'flex', gap: '6px' }}>
+        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
           {['ALL', 'PENDING', 'PARTIALLY PAID', 'PAID'].map(st => (
             <button
               key={st}
@@ -142,7 +142,7 @@ export function InvoicesList({
               onMouseLeave={e => e.currentTarget.style.borderColor = '#2a2a2a'}
             >
               {/* Left Details */}
-              <div style={{ minWidth: '260px', flex: 1 }}>
+              <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
                   <span style={{
                     fontWeight: 700,

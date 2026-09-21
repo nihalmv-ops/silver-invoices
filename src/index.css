@@ -275,6 +275,199 @@ html, body {
 }
 
 /* ==========================================================================
+   APP NAVIGATION & CHROME
+   ========================================================================== */
+.navbar {
+  background-color: #161616;
+  border-bottom: 1px solid #282828;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.navbar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 8px 0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.navbar-brand-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  line-height: 1.1;
+}
+
+.navbar-brand-subtitle {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brand-gold, #9d8050);
+}
+
+.navbar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.nav-tab-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+  font-family: var(--font-sans);
+}
+
+.nav-tab-badge {
+  background-color: #262626;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  color: #d1d1d1;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   DOCUMENT ACTION BAR
+   ========================================================================== */
+.doc-action-bar {
+  background-color: #1b1b1b;
+  border-bottom: 1px solid #2d2d2d;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.doc-action-bar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.doc-action-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.doc-action-secondary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   FORM & ITEM ROW STYLING
+   ========================================================================== */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.form-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.item-row-grid-header {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 90px 110px 36px;
+  gap: 8px;
+  padding: 0 8px 6px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.item-row-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 90px 110px 36px;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 8px;
+  background-color: #1b1b1b;
+  border: 1px solid #292929;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.item-col-name {
+  min-width: 0;
+}
+
+.item-col-qty {
+  min-width: 0;
+}
+
+.item-col-unit {
+  min-width: 0;
+}
+
+.item-col-del {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-preview-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ==========================================================================
    A4 PAPER DOCUMENT STYLING (FOR SCREEN PREVIEW & PRINT)
    ========================================================================== */
 
@@ -1357,15 +1550,36 @@ html, body {
   }
 }
 
+/* Responsive utility classes */
+.show-on-mobile {
+  display: none !important;
+}
+.show-on-mobile-inline {
+  display: none !important;
+}
+
 /* ==========================================================================
    MOBILE & TABLET RESPONSIVE RULES
    ========================================================================== */
+
+/* 1. Tablet & Small Laptop Viewports (<= 1024px) */
+@media screen and (max-width: 1024px) {
+  .editor-preview-split {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* 2. Tablet Portrait & Large Phone Viewports (<= 768px) */
 @media screen and (max-width: 768px) {
   .navbar {
-    padding: 0 12px !important;
+    padding: 0 14px !important;
   }
   .hide-on-mobile {
     display: none !important;
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr !important;
   }
   .doc-letterhead-split {
     flex-direction: column !important;
@@ -1386,6 +1600,7 @@ html, body {
   }
   .doc-financial-reconciliation {
     grid-template-columns: 1fr !important;
+    gap: 8px !important;
   }
   .doc-terms-signatures-row {
     flex-direction: column !important;
@@ -1403,25 +1618,210 @@ html, body {
   .estimate-amount-side {
     text-align: left !important;
   }
-  .doc-banner-bar {
-    flex-direction: column !important;
-    align-items: flex-start !important;
+}
+
+/* 3. Mobile Phone Viewports (<= 640px) */
+@media screen and (max-width: 640px) {
+  .show-on-mobile {
+    display: block !important;
+  }
+  .show-on-mobile-inline {
+    display: inline !important;
+  }
+  .navbar-inner {
+    padding: 6px 0 !important;
+    min-height: 54px !important;
     gap: 8px !important;
   }
-  .doc-banner-right {
-    flex-wrap: wrap !important;
-    gap: 8px !important;
+  .navbar-brand-title {
+    font-size: 16px !important;
+    letter-spacing: 0.12em !important;
+  }
+  .navbar-brand-subtitle {
+    font-size: 8px !important;
+    letter-spacing: 0.18em !important;
+  }
+  .nav-tab-btn {
+    padding: 6px 8px !important;
+    font-size: 12px !important;
+  }
+  .doc-action-bar {
+    padding: 8px 12px !important;
   }
   .a4-document-container {
-    padding: 12px 6px !important;
+    padding: 8px 4px !important;
     overflow-x: auto;
   }
   .a4-document {
-    padding: 12mm 8mm !important;
-    min-width: 310px;
+    padding: 14px 10px 12px 10px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    border-width: 1.5px !important;
+    outline-offset: -3px !important;
   }
-  .item-row-grid {
-    grid-template-columns: 1fr 60px 75px 30px !important;
+  .full-a4-cover-model::after {
+    width: 170px !important;
+    height: 170px !important;
+  }
+  .doc-logo-left .brand-logo-img {
+    height: 50px !important;
+    max-width: 130px !important;
+  }
+  .doc-brand-title {
+    font-size: 18px !important;
+  }
+  .doc-brand-subtitle {
+    font-size: 8.5px !important;
+  }
+  .doc-brand-contact-inline {
+    font-size: 9px !important;
     gap: 4px !important;
   }
+  .doc-brand-address-inline {
+    font-size: 8.5px !important;
+  }
+  .doc-cover-badge {
+    font-size: 14px !important;
+  }
+  .doc-cover-meta-card {
+    padding: 6px 10px !important;
+    min-width: 0 !important;
+  }
+  .doc-cover-row {
+    font-size: 10px !important;
+  }
+  .part-row {
+    font-size: 10.5px !important;
+  }
+  .part-lbl {
+    width: 82px !important;
+    font-size: 10px !important;
+  }
+  .schedule-section-bar {
+    padding: 4px 8px !important;
+  }
+  .schedule-section-title {
+    font-size: 11px !important;
+  }
+  .estimate-title-label {
+    font-size: 13px !important;
+  }
+  .estimate-amount-value {
+    font-size: 20px !important;
+  }
+  .doc-signatures-card {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+  .sig-column {
+    width: 47% !important;
+  }
+  .sig-space {
+    height: 28px !important;
+  }
+  .sig-caption {
+    font-size: 8.5px !important;
+  }
+  .sig-subcaption {
+    font-size: 7.5px !important;
+  }
+  .doc-bottom-imprint {
+    font-size: 8.5px !important;
+    padding-top: 6px !important;
+  }
+  .imprint-small {
+    font-size: 7.5px !important;
+  }
 }
+
+/* 4. Compact & Narrow Phone Viewports (<= 540px) */
+@media screen and (max-width: 540px) {
+  /* Menu inclusions 1-column grid on small phones so long item names don't truncate */
+  .schedule-items-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .schedule-grid-item:nth-child(odd) {
+    border-right: none !important;
+  }
+  .schedule-grid-item {
+    padding: 4px 8px !important;
+    font-size: 10.5px !important;
+    min-height: 26px !important;
+  }
+  .grid-item-main {
+    white-space: normal !important;
+  }
+  .grid-item-name {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-break: break-word !important;
+  }
+
+  /* Food Item Editor: 2-tier card layout on small phones */
+  .item-row-grid-header {
+    display: none !important;
+  }
+  .item-row-card {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 38px !important;
+    gap: 6px !important;
+    padding: 8px !important;
+  }
+  .item-col-name {
+    grid-column: 1 / 3 !important;
+    grid-row: 1 !important;
+  }
+  .item-col-del {
+    grid-column: 3 / 4 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+  .item-col-qty {
+    grid-column: 1 / 2 !important;
+    grid-row: 2 !important;
+  }
+  .item-col-unit {
+    grid-column: 2 / 4 !important;
+    grid-row: 2 !important;
+  }
+
+  /* Action Bar layout on mobile phones */
+  .doc-action-bar-inner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .doc-action-primary {
+    width: 100% !important;
+    justify-content: stretch !important;
+  }
+  .doc-action-primary .btn {
+    flex: 1 !important;
+    text-align: center !important;
+  }
+  .doc-action-secondary {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    padding-bottom: 2px !important;
+    flex-wrap: nowrap !important;
+  }
+  .doc-action-secondary .btn {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Modal responsiveness */
+  .modal-overlay {
+    padding: 8px !important;
+  }
+  .modal-content {
+    max-height: 94vh !important;
+    width: 100% !important;
+  }
+}
+

@@ -31,9 +31,9 @@ export function Home({
   };
 
   return (
-    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '40px 20px' }}>
+    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 16px' }}>
       {/* Hero Header */}
-      <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '36px' }}>
         <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
           <BrandLogo logoSrc={businessInfo?.logo} size="md" />
         </div>
@@ -49,7 +49,7 @@ export function Home({
         </div>
         <h1 style={{
           fontFamily: "var(--font-serif)",
-          fontSize: '38px',
+          fontSize: 'clamp(24px, 5.5vw, 38px)',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
           fontWeight: 700,
@@ -59,7 +59,7 @@ export function Home({
           {businessInfo.name || 'SILVER CATERING'}
         </h1>
         <h2 style={{
-          fontSize: '18px',
+          fontSize: '17px',
           fontWeight: 500,
           color: '#e0e0e0',
           marginBottom: '8px'
@@ -68,19 +68,19 @@ export function Home({
         </h2>
         <p style={{
           color: '#888888',
-          fontSize: '14px',
+          fontSize: '13.5px',
           maxWidth: '480px',
-          margin: '0 auto 28px auto'
+          margin: '0 auto 24px auto'
         }}>
           Create professional quotations and invoices for your catering events.
         </p>
 
         {/* Primary Action Button */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
           <button
             onClick={() => setActivePage('new-quotation')}
             className="btn btn-primary btn-lg"
-            style={{ minWidth: '190px' }}
+            style={{ minWidth: '170px' }}
           >
             <PlusCircle size={18} />
             <span>+ NEW QUOTATION</span>
@@ -105,9 +105,9 @@ export function Home({
       {/* Simple Document Counts */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-        gap: '20px',
-        marginBottom: '40px'
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: '16px',
+        marginBottom: '36px'
       }}>
         <div
           onClick={() => setActivePage('quotations')}
@@ -222,7 +222,7 @@ export function Home({
             </div>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))', gap: '16px' }}>
             {recentQuotations.map(quote => (
               <div
                 key={quote.id}
@@ -342,7 +342,7 @@ export function Home({
             No invoices converted yet. You can convert any quotation to an invoice with one click.
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))', gap: '16px' }}>
             {recentInvoices.map(inv => (
               <div
                 key={inv.id}

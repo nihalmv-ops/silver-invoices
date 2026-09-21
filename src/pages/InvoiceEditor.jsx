@@ -207,12 +207,7 @@ export function InvoiceEditor({
             </span>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '16px',
-            marginBottom: '20px'
-          }}>
+          <div className="form-grid-4" style={{ marginBottom: '20px' }}>
             {/* Total Amount */}
             <div>
               <label className="label">Custom Total Amount (₹)</label>
@@ -324,7 +319,7 @@ export function InvoiceEditor({
             CUSTOMER & INVOICE METADATA
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '14px' }}>
+          <div className="form-grid-4" style={{ marginBottom: '14px' }}>
             <div>
               <label className="label">Invoice Number</label>
               <input
@@ -365,7 +360,7 @@ export function InvoiceEditor({
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
+          <div className="form-grid-4">
             <div>
               <label className="label">Place</label>
               <input

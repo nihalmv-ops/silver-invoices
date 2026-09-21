@@ -4,81 +4,40 @@ import { BrandLogo } from './BrandLogo';
 
 export function Navbar({ activePage, setActivePage, quotationCount = 0, invoiceCount = 0, onOpenSettings, businessInfo }) {
   return (
-    <header className="navbar no-print" style={{
-      backgroundColor: '#161616',
-      borderBottom: '1px solid #282828',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100,
-      padding: '0 24px'
-    }}>
-      <div style={{
-        maxWidth: '1240px',
-        margin: '0 auto',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: '68px',
-        flexWrap: 'wrap',
-        gap: '12px'
-      }}>
+    <header className="navbar no-print">
+      <div className="navbar-inner">
         {/* Brand identity with Logo */}
         <div 
           onClick={() => setActivePage('home')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            cursor: 'pointer',
-            userSelect: 'none'
-          }}
+          className="navbar-brand"
         >
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexShrink: 0
           }}>
             <BrandLogo logoSrc={businessInfo?.logo} size="sm" />
           </div>
           <div>
-            <div style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: '19px',
-              fontWeight: 700,
-              letterSpacing: '0.16em',
-              textTransform: 'uppercase',
-              color: '#f5f5f5',
-              lineHeight: 1.1
-            }}>
+            <div className="navbar-brand-title">
               SILVER CATERING
             </div>
-            <div style={{
-              fontSize: '9.5px',
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-              color: 'var(--brand-gold, #9d8050)'
-            }}>
+            <div className="navbar-brand-subtitle">
               CATERING & EVENTS
             </div>
           </div>
         </div>
 
         {/* Navigation tabs */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <nav className="navbar-tabs">
           <button
             onClick={() => setActivePage('home')}
+            className="nav-tab-btn"
             style={{
-              background: 'none',
-              border: 'none',
               color: activePage === 'home' ? '#f5f5f5' : '#888888',
               fontWeight: activePage === 'home' ? 600 : 500,
-              fontSize: '13px',
-              letterSpacing: '0.04em',
-              padding: '8px 12px',
-              cursor: 'pointer',
-              borderBottom: activePage === 'home' ? '2px solid #b59a62' : '2px solid transparent',
-              transition: 'all 0.15s ease'
+              borderBottomColor: activePage === 'home' ? '#b59a62' : 'transparent'
             }}
           >
             Home
@@ -86,69 +45,39 @@ export function Navbar({ activePage, setActivePage, quotationCount = 0, invoiceC
 
           <button
             onClick={() => setActivePage('quotations')}
+            className="nav-tab-btn"
             style={{
-              background: 'none',
-              border: 'none',
               color: activePage.startsWith('quotation') ? '#f5f5f5' : '#888888',
               fontWeight: activePage.startsWith('quotation') ? 600 : 500,
-              fontSize: '13px',
-              letterSpacing: '0.04em',
-              padding: '8px 12px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              borderBottom: activePage.startsWith('quotation') ? '2px solid #b59a62' : '2px solid transparent',
-              transition: 'all 0.15s ease'
+              borderBottomColor: activePage.startsWith('quotation') ? '#b59a62' : 'transparent'
             }}
           >
             <FileText size={15} />
             <span>Quotations</span>
-            <span style={{
-              backgroundColor: '#262626',
-              padding: '1px 6px',
-              borderRadius: '10px',
-              fontSize: '11px',
-              color: '#d1d1d1'
-            }}>
+            <span className="nav-tab-badge">
               {quotationCount}
             </span>
           </button>
 
           <button
             onClick={() => setActivePage('invoices')}
+            className="nav-tab-btn"
             style={{
-              background: 'none',
-              border: 'none',
               color: activePage.startsWith('invoice') ? '#f5f5f5' : '#888888',
               fontWeight: activePage.startsWith('invoice') ? 600 : 500,
-              fontSize: '13px',
-              letterSpacing: '0.04em',
-              padding: '8px 12px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              borderBottom: activePage.startsWith('invoice') ? '2px solid #b59a62' : '2px solid transparent',
-              transition: 'all 0.15s ease'
+              borderBottomColor: activePage.startsWith('invoice') ? '#b59a62' : 'transparent'
             }}
           >
             <Receipt size={15} />
             <span>Invoices</span>
-            <span style={{
-              backgroundColor: '#262626',
-              padding: '1px 6px',
-              borderRadius: '10px',
-              fontSize: '11px',
-              color: '#d1d1d1'
-            }}>
+            <span className="nav-tab-badge">
               {invoiceCount}
             </span>
           </button>
         </nav>
 
         {/* Right actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="navbar-actions">
           <button
             onClick={onOpenSettings}
             className="btn btn-secondary btn-sm"
@@ -160,11 +89,12 @@ export function Navbar({ activePage, setActivePage, quotationCount = 0, invoiceC
 
           <button
             onClick={() => setActivePage('new-quotation')}
-            className="btn btn-primary"
-            style={{ padding: '8px 16px' }}
+            className="btn btn-primary btn-sm"
+            style={{ padding: '7px 14px' }}
           >
-            <PlusCircle size={16} />
-            <span>NEW QUOTATION</span>
+            <PlusCircle size={15} />
+            <span className="hide-on-mobile">NEW QUOTATION</span>
+            <span className="show-on-mobile-inline">NEW</span>
           </button>
         </div>
       </div>

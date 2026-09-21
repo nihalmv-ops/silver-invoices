@@ -19,43 +19,33 @@ export function ItemRow({ item, onChange, onDelete }) {
   };
 
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'minmax(180px, 1fr) 90px 110px 36px',
-      gap: '8px',
-      alignItems: 'center',
-      padding: '6px 8px',
-      backgroundColor: '#1b1b1b',
-      border: '1px solid #292929',
-      borderRadius: '4px',
-      marginBottom: '6px'
-    }} className="item-row-grid">
+    <div className="item-row-card">
       {/* Item Name */}
-      <div>
+      <div className="item-col-name">
         <input
           type="text"
           className="input"
           placeholder="Item / service name (e.g. Ghee Rice)"
           value={item.name || ''}
           onChange={(e) => onChange('name', e.target.value)}
-          style={{ height: '34px', fontSize: '13px' }}
+          style={{ height: '36px', fontSize: '13px' }}
         />
       </div>
 
       {/* Quantity */}
-      <div>
+      <div className="item-col-qty">
         <input
           type="text"
           className="input"
           placeholder="Qty (e.g. 30)"
           value={item.quantity || ''}
           onChange={(e) => onChange('quantity', e.target.value)}
-          style={{ height: '34px', fontSize: '13px' }}
+          style={{ height: '36px', fontSize: '13px' }}
         />
       </div>
 
       {/* Unit */}
-      <div>
+      <div className="item-col-unit">
         {isCustomUnit ? (
           <div style={{ display: 'flex', gap: '4px' }}>
             <input
@@ -64,7 +54,7 @@ export function ItemRow({ item, onChange, onDelete }) {
               placeholder="Unit"
               value={item.unit || ''}
               onChange={(e) => onChange('unit', e.target.value)}
-              style={{ height: '34px', fontSize: '12px' }}
+              style={{ height: '36px', fontSize: '12px' }}
               autoFocus
             />
             <button
@@ -76,9 +66,10 @@ export function ItemRow({ item, onChange, onDelete }) {
                 border: '1px solid #3d3d3d',
                 color: '#aaa',
                 borderRadius: '3px',
-                padding: '0 6px',
+                padding: '0 8px',
                 cursor: 'pointer',
-                fontSize: '10px'
+                fontSize: '11px',
+                height: '36px'
               }}
             >
               Std
@@ -89,7 +80,7 @@ export function ItemRow({ item, onChange, onDelete }) {
             className="select"
             value={item.unit || ''}
             onChange={handleUnitSelect}
-            style={{ height: '34px', fontSize: '12px' }}
+            style={{ height: '36px', fontSize: '12px' }}
           >
             <option value="">No Unit</option>
             {STANDARD_UNITS.filter(u => u !== 'CUSTOM').map((u) => (
@@ -101,7 +92,7 @@ export function ItemRow({ item, onChange, onDelete }) {
       </div>
 
       {/* Delete Item button */}
-      <div>
+      <div className="item-col-del">
         <button
           type="button"
           onClick={onDelete}
@@ -116,12 +107,14 @@ export function ItemRow({ item, onChange, onDelete }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'color 0.15s ease'
+            transition: 'color 0.15s ease',
+            minWidth: '34px',
+            minHeight: '34px'
           }}
           onMouseEnter={(e) => (e.currentTarget.style.color = '#cf4c4c')}
           onMouseLeave={(e) => (e.currentTarget.style.color = '#888')}
         >
-          <Trash2 size={15} />
+          <Trash2 size={16} />
         </button>
       </div>
     </div>

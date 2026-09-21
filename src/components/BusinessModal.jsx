@@ -156,7 +156,7 @@ export function BusinessModal({ isOpen, onClose, businessInfo, onSave }) {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+          <div className="form-grid-2" style={{ marginBottom: '14px' }}>
             <div>
               <label className="label">Business Name</label>
               <input 
@@ -219,7 +219,7 @@ export function BusinessModal({ isOpen, onClose, businessInfo, onSave }) {
           </div>
 
           {/* Address, Email & Website */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+          <div className="form-grid-2" style={{ marginBottom: '14px' }}>
             <div>
               <label className="label">Address / Location</label>
               <input 

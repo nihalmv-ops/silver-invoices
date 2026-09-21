@@ -200,12 +200,7 @@ export function QuotationEditor({
       </div>
 
       {/* Main Grid: Form on left, live preview optionally on right */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: showLivePreview ? '1fr 1fr' : '1fr',
-        gap: '28px',
-        alignItems: 'start'
-      }}>
+      <div className={showLivePreview ? 'editor-preview-split' : ''}>
         {/* Form Container */}
         <form onSubmit={handleSubmit}>
           {/* SECTION 01 — BUSINESS INFO HEADER */}
@@ -257,7 +252,7 @@ export function QuotationEditor({
             <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#888', fontWeight: 700, marginBottom: '12px' }}>
               SECTION 02 — QUOTATION DETAILS
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-grid-2">
               <div>
                 <label className="label">Quotation Number (Auto)</label>
                 <input
@@ -292,7 +287,7 @@ export function QuotationEditor({
             <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#888', fontWeight: 700, marginBottom: '12px' }}>
               SECTION 03 — CUSTOMER DETAILS
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+            <div className="form-grid-2" style={{ marginBottom: '14px' }}>
               <div>
                 <label className="label">Customer Name *</label>
                 <input
@@ -315,7 +310,7 @@ export function QuotationEditor({
                 />
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+            <div className="form-grid-2">
               <div>
                 <label className="label">Place / Location</label>
                 <input
@@ -350,7 +345,7 @@ export function QuotationEditor({
             <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#888', fontWeight: 700, marginBottom: '12px' }}>
               SECTION 04 — EVENT DETAILS
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px' }}>
+            <div className="form-grid-4">
               <div>
                 <label className="label">Event Name</label>
                 <input

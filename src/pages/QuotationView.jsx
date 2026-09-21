@@ -56,31 +56,20 @@ export function QuotationView({
   return (
     <div>
       {/* Top Action Bar (Hidden on print) */}
-      <div className="doc-action-bar no-print" style={{
-        backgroundColor: '#1b1b1b',
-        borderBottom: '1px solid #2d2d2d',
-        padding: '12px 24px',
-        position: 'sticky',
-        top: '68px',
-        zIndex: 90
-      }}>
-        <div style={{
-          maxWidth: '1100px',
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '12px'
-        }}>
-          <button onClick={onBack} className="btn btn-secondary btn-sm">
-            <ArrowLeft size={16} /> Back to Quotations
-          </button>
+      <div className="doc-action-bar no-print">
+        <div className="doc-action-bar-inner">
+          <div className="doc-action-primary">
+            <button onClick={onBack} className="btn btn-secondary btn-sm">
+              <ArrowLeft size={16} /> <span>Back</span>
+            </button>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <button onClick={handleCopyText} className="btn btn-secondary btn-sm" title="Copy text summary">
-              <Share2 size={15} />
-              <span>Copy Text</span>
+            <button
+              onClick={handlePrint}
+              className="btn btn-primary btn-sm"
+              style={{ padding: '6px 14px' }}
+            >
+              <Printer size={15} />
+              <span>Print / Save PDF</span>
             </button>
 
             <button
@@ -93,6 +82,11 @@ export function QuotationView({
               <span>WhatsApp</span>
             </button>
 
+            <button onClick={() => onEdit(quotation)} className="btn btn-secondary btn-sm">
+              <Edit3 size={15} />
+              <span>Edit</span>
+            </button>
+
             <button
               onClick={() => onConvertToInvoice(quotation)}
               className="btn btn-secondary btn-sm"
@@ -100,22 +94,19 @@ export function QuotationView({
               title="Convert this quotation to an invoice"
             >
               <Receipt size={15} />
-              <span>Convert to Invoice</span>
+              <span className="hide-on-mobile">To Invoice</span>
             </button>
+          </div>
 
-            <button onClick={() => onEdit(quotation)} className="btn btn-secondary btn-sm">
-              <Edit3 size={15} />
-              <span>Edit</span>
-            </button>
-
+          <div className="doc-action-secondary">
             <button
               onClick={handleToggleColumns}
               className="btn btn-secondary btn-sm"
               title="Toggle between 2 columns (fits more items) and 1 column table"
               style={{ color: itemColumns === '2' ? '#9d8050' : '#ddd', borderColor: itemColumns === '2' ? '#9d8050' : '#3d3d3d' }}
             >
-              <LayoutGrid size={15} />
-              <span>{itemColumns === '2' ? '2 Columns (Fit More)' : '1 Column (Table)'}</span>
+              <LayoutGrid size={14} />
+              <span>{itemColumns === '2' ? '2 Cols' : '1 Col'}</span>
             </button>
 
             <button
@@ -123,7 +114,7 @@ export function QuotationView({
               className="btn btn-secondary btn-sm"
               title="Toggle between Compact density (maximum items) and Standard spacing"
             >
-              <span>{density === 'compact' ? 'Compact Density' : 'Standard Spacing'}</span>
+              <span>{density === 'compact' ? 'Compact' : 'Standard'}</span>
             </button>
 
             <button
@@ -131,17 +122,13 @@ export function QuotationView({
               className="btn btn-secondary btn-sm"
               title="Toggle Full Page / Standard A4 view"
             >
-              <Maximize2 size={15} />
-              <span>{isFullWidth ? 'Standard A4' : 'Full Page'}</span>
+              <Maximize2 size={14} />
+              <span>{isFullWidth ? 'A4 Size' : 'Full Page'}</span>
             </button>
 
-            <button
-              onClick={handlePrint}
-              className="btn btn-primary btn-sm"
-              style={{ padding: '6px 16px' }}
-            >
-              <Printer size={15} />
-              <span>Print / Save PDF</span>
+            <button onClick={handleCopyText} className="btn btn-secondary btn-sm" title="Copy text summary">
+              <Share2 size={14} />
+              <span className="hide-on-mobile">Copy Text</span>
             </button>
           </div>
         </div>

@@ -133,7 +133,7 @@ export function QuotationsList({
               onMouseLeave={e => e.currentTarget.style.borderColor = '#2a2a2a'}
             >
               {/* Left Column: Number, Customer, Meta */}
-              <div style={{ minWidth: '260px', flex: 1 }}>
+              <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
                   <span style={{
                     fontWeight: 700,

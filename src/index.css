@@ -1,0 +1,1427 @@
+/* ==========================================================================
+   SILVER CATERING — LUXURY CATERING MANAGEMENT SYSTEM STYLES
+   ========================================================================== */
+
+:root {
+  --bg-primary: #121212;
+  --bg-surface: #1a1a1a;
+  --bg-card: #222222;
+  --bg-input: #171717;
+  --bg-hover: #2a2a2a;
+  
+  --border-subtle: #2f2f2f;
+  --border-light: #3d3d3d;
+  --border-silver: #555555;
+  
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --text-muted: #737373;
+  
+  --gold-accent: #b59a62;
+  --gold-accent-hover: #c7ab72;
+  --gold-tint: rgba(181, 154, 98, 0.12);
+  --gold-border: rgba(181, 154, 98, 0.35);
+
+  --brand-forest: #153120;
+  --brand-forest-dark: #0f2417;
+  --brand-gold: #9d8050;
+  --brand-gold-light: #c29c5e;
+
+  --silver-accent: #d1d1d1;
+  
+  --danger: #cf4c4c;
+  --danger-bg: rgba(207, 76, 76, 0.12);
+  --success: #3fae68;
+  --success-bg: rgba(63, 174, 104, 0.12);
+  --warning: #d99a38;
+  --warning-bg: rgba(217, 154, 56, 0.12);
+
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-paper: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-accent);
+}
+
+/* Typography Helpers */
+.brand-title {
+  font-family: var(--font-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.brand-subtitle {
+  font-family: var(--font-sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gold-accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  user-select: none;
+}
+
+.btn-primary {
+  background-color: var(--gold-accent);
+  color: #121212;
+  border-color: var(--gold-accent);
+}
+.btn-primary:hover {
+  background-color: var(--gold-accent-hover);
+  border-color: var(--gold-accent-hover);
+}
+
+.btn-secondary {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+.btn-secondary:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-silver);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--silver-accent);
+  border-color: var(--border-light);
+}
+.btn-outline:hover {
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
+  background-color: var(--gold-tint);
+}
+
+.btn-danger {
+  background-color: transparent;
+  color: var(--danger);
+  border-color: rgba(207, 76, 76, 0.4);
+}
+.btn-danger:hover {
+  background-color: var(--danger-bg);
+  border-color: var(--danger);
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.btn-lg {
+  padding: 12px 24px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+/* Form inputs */
+.input, .select, .textarea {
+  width: 100%;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-primary);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 1px var(--gold-accent);
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+.badge-pending {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid rgba(217, 154, 56, 0.3);
+}
+.badge-partial {
+  background-color: var(--gold-tint);
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-border);
+}
+.badge-paid {
+  background-color: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(63, 174, 104, 0.3);
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-content {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--gold-accent);
+  border-radius: 4px;
+  padding: 12px 18px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  animation: toastIn 0.2s ease-out;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   A4 PAPER DOCUMENT STYLING (FOR SCREEN PREVIEW & PRINT)
+   ========================================================================== */
+
+.a4-document-container {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+  background-color: #0c0d0e;
+  transition: padding 0.2s ease;
+}
+
+.a4-document-container.full-page-mode {
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.a4-document {
+  width: 100%;
+  max-width: 210mm;
+  min-height: 297mm;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  box-shadow: var(--shadow-paper);
+  padding: 14mm 16mm 12mm 16mm;
+  position: relative;
+  font-family: var(--font-sans);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: max-width 0.2s ease;
+}
+
+.a4-document-container.full-page-mode .a4-document {
+  max-width: 1000px;
+}
+
+/* ==========================================================================
+   FULL A4 COVER MODEL (LUXURY BORDER FRAME + WATERMARK)
+   ========================================================================== */
+.full-a4-cover-model {
+  border: 2px solid var(--brand-forest, #153120);
+  outline: 1px solid var(--brand-gold, #9d8050);
+  outline-offset: -5px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Authentic Central Watermark */
+.full-a4-cover-model::after {
+  content: '';
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  background-image: url('/logo.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.038;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.full-a4-cover-model > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   1. OFFICIAL LETTERHEAD WITH LOGO ON LEFT SIDE
+   ========================================================================== */
+.doc-header {
+  margin-bottom: 12px;
+}
+
+.doc-letterhead-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Left Group: Logo + Business Details */
+.doc-brand-left-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.doc-logo-left {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.doc-brand-text-left {
+  text-align: left;
+}
+
+.doc-brand-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #151515;
+  line-height: 1.1;
+  margin-bottom: 2px;
+  text-align: left;
+}
+
+.doc-brand-subtitle {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--brand-gold, #9d8050);
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.doc-brand-contact-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  color: #444444;
+  line-height: 1.35;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.ribbon-sep {
+  color: var(--brand-gold, #9d8050);
+  font-size: 11px;
+}
+
+.doc-brand-address-inline {
+  font-size: 9.5px;
+  color: #666666;
+  margin-top: 2px;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+
+/* Right Side: Document Identification Cover Card */
+.doc-cover-meta-card {
+  background: #faf8f5;
+  border: 1.5px solid var(--brand-gold, #9d8050);
+  border-radius: 3px;
+  padding: 8px 14px;
+  min-width: 190px;
+  text-align: right;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  flex-shrink: 0;
+}
+
+.doc-cover-meta-card.invoice-meta-card {
+  border-color: var(--brand-forest, #153120);
+}
+
+.doc-cover-badge {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--brand-forest, #153120);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.doc-cover-subtitle {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-gold, #9d8050);
+  margin-bottom: 4px;
+}
+
+.doc-cover-divider {
+  height: 1px;
+  background-color: #e8e4dc;
+  margin: 4px 0 6px 0;
+}
+
+.doc-cover-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11px;
+  margin-bottom: 3px;
+  gap: 8px;
+}
+
+.cover-lbl {
+  color: #777777;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.cover-val {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.cover-val.quote-no {
+  color: var(--brand-forest, #153120);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.validity-pill {
+  background: rgba(157, 128, 80, 0.14);
+  color: var(--brand-gold, #9d8050);
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.doc-letterhead-divider {
+  height: 4px;
+  border-top: 2px solid var(--brand-forest, #153120);
+  border-bottom: 1px solid var(--brand-gold, #9d8050);
+  margin: 10px 0 12px 0;
+}
+
+.invoice-status-pill {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.invoice-status-pill.status-paid {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.invoice-status-pill.status-partially-paid {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+.invoice-status-pill.status-pending {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* ==========================================================================
+   3. CLIENT & EVENT SPECIFICATIONS CARD
+   ========================================================================== */
+.doc-particulars-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.doc-particulars-col {
+  background: #ffffff;
+  border: 1px solid #e8e4dc;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.particulars-header {
+  background: #f7f5ef;
+  border-bottom: 1px solid #e8e4dc;
+  padding: 5px 12px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--brand-forest, #153120);
+  text-transform: uppercase;
+}
+
+.particulars-body {
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.part-row {
+  display: flex;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+
+.part-lbl {
+  width: 95px;
+  color: #666666;
+  font-size: 11px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.part-val {
+  flex: 1;
+  color: #222222;
+}
+
+.part-val.bold {
+  font-weight: 700;
+}
+
+.client-name {
+  font-size: 12.5px;
+  color: #111111;
+  letter-spacing: 0.02em;
+}
+
+.pax-highlight-row {
+  align-items: center;
+  margin-top: 2px;
+  padding-top: 4px;
+  border-top: 1px dashed #e8e4dc;
+}
+
+.pax-badge {
+  display: inline-block;
+  background-color: var(--brand-forest, #153120);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ==========================================================================
+   4. MENU & SERVICE INCLUSIONS SCHEDULE (TABLE LAYOUT)
+   ========================================================================== */
+.doc-schedule-wrapper {
+  margin-bottom: 16px;
+}
+
+.doc-schedule-section {
+  margin-bottom: 14px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.schedule-section-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--brand-forest, #153120);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 2px 2px 0 0;
+  border-bottom: 2px solid var(--brand-gold, #9d8050);
+}
+
+.schedule-section-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-index-pill {
+  background: var(--brand-gold, #9d8050);
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+}
+
+.schedule-section-title {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.schedule-section-subtitle {
+  font-size: 10px;
+  color: #e4decb;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.schedule-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e8e4dc;
+  border-top: none;
+}
+
+.schedule-items-table thead th {
+  background-color: #faf9f6;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #777777;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-bottom: 1px solid #e8e4dc;
+}
+
+.th-idx {
+  width: 32px;
+  text-align: center;
+}
+
+.th-item {
+  text-align: left;
+}
+
+.th-qty {
+  width: 140px;
+  text-align: right;
+}
+
+.schedule-item-row {
+  border-bottom: 1px solid #f2ede4;
+  transition: background-color 0.1s ease;
+}
+
+.schedule-item-row:last-child {
+  border-bottom: none;
+}
+
+.schedule-item-row:nth-child(even) {
+  background-color: #fdfdfc;
+}
+
+.schedule-item-row td {
+  padding: 5px 10px;
+  font-size: 11.5px;
+  vertical-align: middle;
+}
+
+.td-idx {
+  text-align: center;
+  color: #999999;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.item-name-text {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #1a1a1a;
+}
+
+.td-qty {
+  text-align: right;
+}
+
+.qty-tag {
+  display: inline-block;
+  background: #f4f2ec;
+  border: 1px solid #e0ddd4;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 10.5px;
+  color: #222222;
+  font-weight: 500;
+}
+
+.qty-included {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--brand-gold, #9d8050);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   HIGH-CAPACITY 2-COLUMN ITEM INCLUSIONS GRID
+   ========================================================================== */
+.schedule-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid #e8e4dc;
+  border-top: none;
+  background-color: #ffffff;
+}
+
+.schedule-grid-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3.5px 8px;
+  font-size: 11px;
+  border-bottom: 1px solid #f2ede4;
+  gap: 6px;
+  min-height: 22px;
+  box-sizing: border-box;
+}
+
+.schedule-grid-item:nth-child(odd) {
+  border-right: 1px solid #e8e4dc;
+}
+
+.schedule-grid-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-grid-item:nth-last-child(2):nth-child(odd) {
+  border-bottom: none;
+}
+
+.grid-item-main {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.grid-item-idx {
+  color: #888888;
+  font-size: 9.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.grid-item-name {
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.grid-item-meta {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   DENSITY: COMPACT (FITS 30-45+ ITEMS ON SINGLE A4 PAGE)
+   ========================================================================== */
+.density-compact {
+  padding: 10mm 14mm 10mm 14mm !important;
+}
+
+.density-compact .doc-header {
+  margin-bottom: 8px;
+}
+
+.density-compact .doc-brand-title {
+  font-size: 21px;
+}
+
+.density-compact .doc-brand-subtitle {
+  font-size: 9px;
+  margin-bottom: 3px;
+}
+
+.density-compact .doc-brand-contact-inline {
+  font-size: 9.5px;
+  line-height: 1.3;
+}
+
+.density-compact .doc-cover-meta-card {
+  padding: 6px 10px;
+  min-width: 175px;
+}
+
+.density-compact .doc-cover-badge {
+  font-size: 14px;
+}
+
+.density-compact .doc-cover-row {
+  margin-bottom: 2px;
+  font-size: 10.5px;
+}
+
+.density-compact .doc-letterhead-divider {
+  margin: 6px 0 8px 0;
+}
+
+.density-compact .doc-particulars-grid {
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.density-compact .particulars-header {
+  padding: 3.5px 8px;
+  font-size: 8.5px;
+}
+
+.density-compact .particulars-body {
+  padding: 5px 8px;
+  gap: 2.5px;
+}
+
+.density-compact .part-row {
+  font-size: 10.5px;
+  line-height: 1.25;
+}
+
+.density-compact .part-lbl {
+  width: 85px;
+  font-size: 10px;
+}
+
+.density-compact .doc-schedule-wrapper {
+  margin-bottom: 10px;
+}
+
+.density-compact .doc-schedule-section {
+  margin-bottom: 8px;
+}
+
+.density-compact .schedule-section-bar {
+  padding: 4px 8px;
+}
+
+.density-compact .section-index-pill {
+  font-size: 8.5px;
+  padding: 1px 5px;
+}
+
+.density-compact .schedule-section-title {
+  font-size: 11px;
+}
+
+.density-compact .schedule-section-subtitle {
+  font-size: 9px;
+}
+
+.density-compact .schedule-grid-item {
+  padding: 2.5px 6px;
+  font-size: 10px;
+  min-height: 20px;
+}
+
+.density-compact .grid-item-idx {
+  font-size: 8.5px;
+}
+
+.density-compact .qty-tag {
+  padding: 1px 5px;
+  font-size: 9.5px;
+}
+
+.density-compact .qty-included {
+  font-size: 8.5px;
+}
+
+.density-compact .schedule-items-table th {
+  padding: 3px 6px;
+  font-size: 8px;
+}
+
+.density-compact .schedule-item-row td {
+  padding: 3px 6px;
+  font-size: 10.5px;
+}
+
+.density-compact .doc-estimate-box {
+  padding: 8px 12px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.density-compact .estimate-title-label {
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.density-compact .estimate-subtext {
+  font-size: 9.5px;
+  line-height: 1.3;
+}
+
+.density-compact .estimate-amount-value {
+  font-size: 20px;
+}
+
+.density-compact .doc-financial-reconciliation {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  gap: 8px;
+}
+
+.density-compact .fin-card {
+  padding: 6px 8px;
+}
+
+.density-compact .fin-card-label {
+  font-size: 8.5px;
+  margin-bottom: 2px;
+}
+
+.density-compact .fin-card-amount {
+  font-size: 16px;
+}
+
+.density-compact .balance-card .balance-val {
+  font-size: 18px;
+}
+
+.density-compact .doc-notes-callout {
+  padding: 5px 8px;
+  margin-bottom: 8px;
+}
+
+.density-compact .doc-footer-container {
+  padding-top: 8px;
+}
+
+.density-compact .doc-terms-signatures-row {
+  margin-bottom: 8px;
+  gap: 14px;
+}
+
+.density-compact .terms-card-title {
+  font-size: 8.5px;
+  margin-bottom: 2px;
+}
+
+.density-compact .terms-card-list {
+  font-size: 7.5px;
+  line-height: 1.3;
+  padding-left: 12px;
+}
+
+.density-compact .sig-space {
+  height: 24px;
+}
+
+.density-compact .sig-column {
+  width: 110px;
+}
+
+.density-compact .doc-bottom-imprint {
+  font-size: 8.5px;
+  padding-top: 5px;
+}
+
+.density-compact .imprint-small {
+  font-size: 7.5px;
+}
+
+/* ==========================================================================
+   5. FINANCIAL BLOCKS (ESTIMATED COST / INVOICE RECONCILIATION)
+   ========================================================================== */
+.doc-estimate-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #faf8f5 0%, #f4f0e6 100%);
+  border: 1.5px solid var(--brand-gold, #9d8050);
+  border-radius: 3px;
+  padding: 12px 18px;
+  margin-top: 14px;
+  margin-bottom: 18px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.estimate-title-label {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-forest, #153120);
+  margin-bottom: 3px;
+}
+
+.estimate-subtext {
+  font-size: 10.5px;
+  color: #555555;
+  max-width: 440px;
+  line-height: 1.4;
+}
+
+.estimate-validity-note {
+  font-size: 9.5px;
+  color: #888888;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.estimate-amount-side {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.estimate-currency-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--brand-gold, #9d8050);
+  text-transform: uppercase;
+}
+
+.estimate-amount-value {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--brand-forest, #153120);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin: 2px 0;
+}
+
+.estimate-tax-note {
+  font-size: 9.5px;
+  color: #777777;
+}
+
+/* Invoice 3-card Financial Reconciliation */
+.doc-financial-reconciliation {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+  margin-bottom: 18px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.fin-card {
+  background: #faf8f5;
+  border: 1px solid #e8e4dc;
+  border-radius: 3px;
+  padding: 10px 14px;
+  text-align: right;
+}
+
+.fin-card-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 4px;
+}
+
+.fin-card-amount {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.1;
+}
+
+.fin-card-sub {
+  font-size: 9px;
+  color: #888888;
+  margin-top: 3px;
+}
+
+.advance-card .advance-val {
+  color: #1e7039;
+}
+
+.balance-card {
+  border: 1.5px solid var(--brand-forest, #153120);
+  background: #fffcf8;
+}
+
+.balance-card .balance-val {
+  color: #a82323;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.balance-card .fin-card-sub.highlight {
+  color: #a82323;
+  font-weight: 600;
+}
+
+/* Notes Callout */
+.doc-notes-callout {
+  background: #faf9f6;
+  border-left: 3.5px solid var(--brand-gold, #9d8050);
+  border-top: 1px solid #e8e4dc;
+  border-right: 1px solid #e8e4dc;
+  border-bottom: 1px solid #e8e4dc;
+  padding: 7px 12px;
+  margin-bottom: 16px;
+  border-radius: 0 3px 3px 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.notes-header {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--brand-gold, #9d8050);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.notes-content {
+  font-size: 11px;
+  color: #444444;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   6. TERMS & DUAL SIGN-OFF FOOTER
+   ========================================================================== */
+.doc-footer-container {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #e8e4dc;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.doc-terms-signatures-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+.doc-terms-card {
+  flex: 1;
+  max-width: 380px;
+}
+
+.terms-card-title {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-forest, #153120);
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e8e4dc;
+  padding-bottom: 2px;
+}
+
+.terms-card-list {
+  font-size: 8.5px;
+  line-height: 1.4;
+  color: #666666;
+  padding-left: 14px;
+  margin: 0;
+}
+
+.terms-card-list li {
+  margin-bottom: 2px;
+}
+
+.doc-signatures-card {
+  display: flex;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.sig-column {
+  width: 125px;
+  text-align: center;
+}
+
+.sig-space {
+  height: 38px;
+}
+
+.sig-line {
+  border-top: 1px solid #333333;
+  margin-bottom: 3px;
+}
+
+.sig-caption {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #222222;
+}
+
+.sig-subcaption {
+  font-size: 8px;
+  color: #777777;
+}
+
+.doc-bottom-imprint {
+  text-align: center;
+  font-size: 9.5px;
+  color: #777777;
+  letter-spacing: 0.04em;
+  padding-top: 8px;
+  border-top: 1px dotted #e0ded7;
+}
+
+.imprint-small {
+  font-size: 8.5px;
+  color: #999999;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   PRINT SPECIFIC RULES (@media print)
+   ========================================================================== */
+
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide entire application chrome & interactive widgets */
+  .no-print,
+  .navbar,
+  .toast-container,
+  .modal-overlay,
+  .btn,
+  .doc-action-bar,
+  header.navbar {
+    display: none !important;
+  }
+
+  .a4-document-container {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .a4-document {
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 282mm !important;
+    padding: 8mm 12mm 8mm 12mm !important;
+    margin: 0 auto !important;
+    border: 2px solid var(--brand-forest, #153120) !important;
+    outline: 1px solid var(--brand-gold, #9d8050) !important;
+    outline-offset: -4px !important;
+    box-sizing: border-box !important;
+  }
+
+  .full-a4-cover-model::after {
+    opacity: 0.045 !important;
+    display: block !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 5mm 6mm;
+  }
+
+  .doc-schedule-section {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .schedule-items-table tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .doc-estimate-box,
+  .doc-financial-reconciliation,
+  .doc-notes-callout,
+  .doc-footer-container {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE RULES
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0 12px !important;
+  }
+  .hide-on-mobile {
+    display: none !important;
+  }
+  .doc-letterhead-split {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+  .doc-brand-left-group {
+    flex-direction: row !important;
+    gap: 12px !important;
+  }
+  .doc-cover-meta-card {
+    width: 100% !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
+  .doc-particulars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .doc-financial-reconciliation {
+    grid-template-columns: 1fr !important;
+  }
+  .doc-terms-signatures-row {
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  .doc-signatures-card {
+    justify-content: space-between !important;
+  }
+  .doc-estimate-box {
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: left !important;
+  }
+  .estimate-amount-side {
+    text-align: left !important;
+  }
+  .doc-banner-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .doc-banner-right {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .a4-document-container {
+    padding: 12px 6px !important;
+    overflow-x: auto;
+  }
+  .a4-document {
+    padding: 12mm 8mm !important;
+    min-width: 310px;
+  }
+  .item-row-grid {
+    grid-template-columns: 1fr 60px 75px 30px !important;
+    gap: 4px !important;
+  }
+}

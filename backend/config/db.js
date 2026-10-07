@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Use Google Public DNS to avoid Windows ISP SRV ECONNREFUSED issues
 try {
   dns.setServers(['8.8.8.8', '8.8.4.4']);
-} catch (e) {
+} catch {
   // Ignore if custom dns cannot be set
 }
 

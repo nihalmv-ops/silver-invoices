@@ -96,3 +96,4 @@ app.listen(PORT, () => {
   console.log(`🚀 Silver Catering Backend Server running on port ${PORT}`);
   console.log(`📡 Health Check: http://localhost:${PORT}/api/health`);
 });
+

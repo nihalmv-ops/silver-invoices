@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './context/useAuth';
+import { LoginPage } from './pages/LoginPage';
+import { RegisterPage } from './pages/RegisterPage';
 import { Navbar } from './components/Navbar';
 import { BusinessModal } from './components/BusinessModal';
 import { DeleteConfirmModal } from './components/DeleteConfirmModal';
 import { Toast } from './components/Toast';
+import { BrandLogo } from './components/BrandLogo';
 
 import { Home } from './pages/Home';
 import { QuotationEditor } from './pages/QuotationEditor';
@@ -26,8 +31,12 @@ import {
 import { getNextInvoiceNumber } from './utils/documentNumber';
 import { SAMPLE_QUOTATION } from './constants/sampleQuotation';
 import { getTodayFormatted } from './utils/formatters';
+import { api } from './services/api';
 
-export function App() {
+function AppContent() {
+  const { user, token, isAuthenticated, isLoading, logout } = useAuth();
+  const [authView, setAuthView] = useState('login'); // 'login' | 'register'
+
   const [activePage, setActivePage] = useState('home');
   // Initialize storage state synchronously
   const [quotations, setQuotations] = useState(() => {
@@ -51,6 +60,53 @@ export function App() {
   const showToast = (message, type = 'info') => {
     setToast({ message, type });
   };
+
+  // Sync with backend on login
+  useEffect(() => {
+    if (!token || token === 'demo_token_silver_catering') return;
+
+    let isMounted = true;
+
+    // Fetch quotations from backend
+    api.quotations.getAll(token)
+      .then((res) => {
+        if (isMounted && res && res.data && Array.isArray(res.data) && res.data.length > 0) {
+          setQuotations(res.data);
+          localStorage.setItem('silver_quotations', JSON.stringify(res.data));
+        }
+      })
+      .catch((err) => {
+        console.warn('Backend quotations sync notice:', err.message);
+      });
+
+    // Fetch invoices from backend
+    api.invoices.getAll(token)
+      .then((res) => {
+        if (isMounted && res && res.data && Array.isArray(res.data) && res.data.length > 0) {
+          setInvoices(res.data);
+          localStorage.setItem('silver_invoices', JSON.stringify(res.data));
+        }
+      })
+      .catch((err) => {
+        console.warn('Backend invoices sync notice:', err.message);
+      });
+
+    // Fetch business profile from backend
+    api.business.get(token)
+      .then((res) => {
+        if (isMounted && res && res.data) {
+          setBusinessInfo(res.data);
+          saveBusinessInfoStorage(res.data);
+        }
+      })
+      .catch((err) => {
+        console.warn('Backend business profile sync notice:', err.message);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [token]);
 
   // Handlers for Quotation
   const handleNewQuotation = () => {
@@ -78,6 +134,13 @@ export function App() {
     showToast(`Quotation ${quoteData.quotationNumber} saved successfully!`, 'success');
     setActivePage('view-quotation');
     window.scrollTo(0, 0);
+
+    // Sync to backend if logged in
+    if (token && token !== 'demo_token_silver_catering') {
+      api.quotations.save(quoteData, token).catch((err) => {
+        console.warn('Backend quotation save notice:', err.message);
+      });
+    }
   };
 
   const handleDeleteQuotationClick = (quote) => {
@@ -90,11 +153,19 @@ export function App() {
 
   const handleConfirmDeleteQuotation = () => {
     if (!deleteModalState.item) return;
-    const updated = deleteQuotationStorage(deleteModalState.item.id);
+    const itemToDelete = deleteModalState.item;
+    const updated = deleteQuotationStorage(itemToDelete.id);
     setQuotations(updated);
-    showToast(`Quotation ${deleteModalState.item.quotationNumber} deleted.`, 'info');
+    showToast(`Quotation ${itemToDelete.quotationNumber} deleted.`, 'info');
     if (activePage === 'view-quotation') {
       setActivePage('quotations');
+    }
+
+    // Sync deletion to backend
+    if (token && token !== 'demo_token_silver_catering') {
+      api.quotations.delete(itemToDelete.id, token).catch((err) => {
+        console.warn('Backend quotation delete notice:', err.message);
+      });
     }
   };
 
@@ -123,6 +194,13 @@ export function App() {
     showToast(`Converted to Invoice ${nextInvNumber}!`, 'success');
     setActivePage('edit-invoice');
     window.scrollTo(0, 0);
+
+    // Sync to backend
+    if (token && token !== 'demo_token_silver_catering') {
+      api.invoices.save(newInvoice, token).catch((err) => {
+        console.warn('Backend invoice save notice:', err.message);
+      });
+    }
   };
 
   // Handlers for Invoice
@@ -145,6 +223,13 @@ export function App() {
     showToast(`Invoice ${invData.invoiceNumber} updated successfully!`, 'success');
     setActivePage('view-invoice');
     window.scrollTo(0, 0);
+
+    // Sync to backend
+    if (token && token !== 'demo_token_silver_catering') {
+      api.invoices.save(invData, token).catch((err) => {
+        console.warn('Backend invoice save notice:', err.message);
+      });
+    }
   };
 
   const handleDeleteInvoiceClick = (inv) => {
@@ -157,11 +242,19 @@ export function App() {
 
   const handleConfirmDeleteInvoice = () => {
     if (!deleteModalState.item) return;
-    const updated = deleteInvoiceStorage(deleteModalState.item.id);
+    const itemToDelete = deleteModalState.item;
+    const updated = deleteInvoiceStorage(itemToDelete.id);
     setInvoices(updated);
-    showToast(`Invoice ${deleteModalState.item.invoiceNumber} deleted.`, 'info');
+    showToast(`Invoice ${itemToDelete.invoiceNumber} deleted.`, 'info');
     if (activePage === 'view-invoice') {
       setActivePage('invoices');
+    }
+
+    // Sync deletion to backend
+    if (token && token !== 'demo_token_silver_catering') {
+      api.invoices.delete(itemToDelete.id, token).catch((err) => {
+        console.warn('Backend invoice delete notice:', err.message);
+      });
     }
   };
 
@@ -170,6 +263,13 @@ export function App() {
     saveBusinessInfoStorage(newInfo);
     setBusinessInfo(newInfo);
     showToast('Business details updated successfully!', 'success');
+
+    // Sync to backend
+    if (token && token !== 'demo_token_silver_catering') {
+      api.business.update(newInfo, token).catch((err) => {
+        console.warn('Backend business update notice:', err.message);
+      });
+    }
   };
 
   // Reset or Load Sample Reference Quotation
@@ -184,8 +284,52 @@ export function App() {
     showToast('Loaded Sulaiman (1200 PAX) reference quotation!', 'success');
     setActivePage('view-quotation');
     window.scrollTo(0, 0);
+
+    if (token && token !== 'demo_token_silver_catering') {
+      api.quotations.save(sampleCopy, token).catch((err) => {
+        console.warn('Backend sample quotation save notice:', err.message);
+      });
+    }
   };
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#121212',
+        color: '#f5f5f5'
+      }}>
+        <BrandLogo size="md" />
+        <div style={{
+          marginTop: '20px',
+          fontFamily: 'var(--font-serif)',
+          letterSpacing: '0.15em',
+          fontSize: '18px',
+          color: 'var(--gold-accent)'
+        }}>
+          SILVER CATERING
+        </div>
+        <div style={{ marginTop: '8px', color: 'var(--text-muted)', fontSize: '13px' }}>
+          Loading system...
+        </div>
+      </div>
+    );
+  }
+
+  // Unauthenticated view: Login or Register
+  if (!isAuthenticated) {
+    if (authView === 'register') {
+      return <RegisterPage onToggleLogin={() => setAuthView('login')} />;
+    }
+    return <LoginPage onToggleRegister={() => setAuthView('register')} />;
+  }
+
+  // Authenticated Main Dashboard
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar
@@ -195,6 +339,8 @@ export function App() {
         invoiceCount={invoices.length}
         onOpenSettings={() => setIsSettingsOpen(true)}
         businessInfo={businessInfo}
+        user={user}
+        onLogout={logout}
       />
 
       <main style={{ flex: 1 }}>
@@ -319,6 +465,14 @@ export function App() {
       {/* Toast Feedback */}
       <Toast toast={toast} onClose={() => setToast(null)} />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 

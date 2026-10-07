@@ -1,8 +1,17 @@
 import React from 'react';
-import { PlusCircle, FileText, Receipt, Settings } from 'lucide-react';
+import { PlusCircle, FileText, Receipt, Settings, LogOut, User as UserIcon } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
-export function Navbar({ activePage, setActivePage, quotationCount = 0, invoiceCount = 0, onOpenSettings, businessInfo }) {
+export function Navbar({
+  activePage,
+  setActivePage,
+  quotationCount = 0,
+  invoiceCount = 0,
+  onOpenSettings,
+  businessInfo,
+  user,
+  onLogout
+}) {
   return (
     <header className="navbar no-print">
       <div className="navbar-inner">
@@ -77,7 +86,49 @@ export function Navbar({ activePage, setActivePage, quotationCount = 0, invoiceC
         </nav>
 
         {/* Right actions */}
-        <div className="navbar-actions">
+        <div className="navbar-actions" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {user && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '7px',
+                padding: '4px 10px',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '20px',
+                border: '1px solid var(--border-subtle)',
+                fontSize: '12px'
+              }}
+              title={`Logged in as ${user.email || user.name}`}
+            >
+              <div style={{
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--brand-forest)',
+                border: '1px solid var(--gold-accent)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--gold-accent)',
+                fontWeight: 'bold',
+                fontSize: '10px'
+              }}>
+                {user.name ? user.name.charAt(0).toUpperCase() : <UserIcon size={12} />}
+              </div>
+              <span className="hide-on-mobile" style={{
+                color: '#e5e5e5',
+                fontWeight: 500,
+                maxWidth: '110px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
+              }}>
+                {user.name}
+              </span>
+            </div>
+          )}
+
           <button
             onClick={onOpenSettings}
             className="btn btn-secondary btn-sm"
@@ -96,6 +147,22 @@ export function Navbar({ activePage, setActivePage, quotationCount = 0, invoiceC
             <span className="hide-on-mobile">NEW QUOTATION</span>
             <span className="show-on-mobile-inline">NEW</span>
           </button>
+
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              className="btn btn-secondary btn-sm"
+              title="Sign Out"
+              style={{
+                padding: '7px 9px',
+                color: '#f87171',
+                borderColor: 'rgba(248, 113, 113, 0.25)'
+              }}
+            >
+              <LogOut size={15} />
+              <span className="hide-on-mobile">Logout</span>
+            </button>
+          )}
         </div>
       </div>
     </header>

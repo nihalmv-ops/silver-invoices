@@ -1,9 +1,16 @@
 /**
- * API Service for connecting frontend to the Render/local Node.js backend.
- * Uses VITE_API_URL if configured, otherwise falls back to http://localhost:5000.
+ * API Service for connecting frontend to the Render Node.js backend.
+ * Uses VITE_API_URL if configured, otherwise falls back to the live Render backend
+ * or http://localhost:5000 when developing locally.
  */
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
+const isBrowser = typeof window !== 'undefined';
+const isLocalhost = isBrowser && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL ||
+  (isLocalhost ? 'http://localhost:5000' : 'https://silver-invoices.onrender.com')
+).replace(/\/+$/, '');
 
 /**
  * Generic fetch wrapper with timeout and JSON handling
